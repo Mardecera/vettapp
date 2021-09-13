@@ -1,72 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vettapp</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="shortcut icon" href="./public/favicon.png" type="image/x-icon">
+    <link rel='stylesheet' href='https://pro.fontawesome.com/releases/v5.10.0/css/all.css' integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p' crossorigin='anonymous'/>
+    <link rel='stylesheet' href='./src/styles/general.css'>
+    <title>VettApp</title>
 </head>
 <body>
-    <h2 class="text-center my-5 titulo"></h2>
-    <div class="container mt-5 p-5">
-        <div id="contenido" class="row">
-            <div class="col-md-6 agregar-cita">
-                <form id="nueva-cita">
-                    <legend class="mb-4">Datos del Paciente</legend>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-lg-4 col-form-label">Nombre Mascota:</label>
-                        <div class="col-sm-8 col-lg-8">
-                            <input type="text" id="mascota" name="mascota" class="form-control" placeholder="Nombre Mascota">
-                        </div>
+    <div class="container">
+        <div class="contain">
+            <div class="title">
+                <h1>VettApp</h1>
+                <h4>for your quotes!</h4>
+            </div>
+            <div class="form">
+                <form  id="formulario" data-id="">
+                    <div class="field">
+                        <label for="pet-name">Pet name:</label>
+                        <input type="text" name="" id="pet-name">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-lg-4 col-form-label">Propietario:</label>
-                        <div class="col-sm-8 col-lg-8">
-                            <input type="text" id="propietario" name="propietario" class="form-control"  placeholder="Nombre Dueño de la Mascota">
-                        </div>
+                    <div class="field">
+                        <label for="pet-owner">Owner name:</label>
+                        <input type="text" name="" id="pet-owner">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-lg-4 col-form-label">Teléfono:</label>
-                        <div class="col-sm-8 col-lg-8">
-                            <input type="tel" id="telefono" name="telefono" class="form-control"  placeholder="Número de Teléfono">
-                        </div>
+                    <div class="field">
+                        <label for="owner-phone">Phone:</label>
+                        <input type="phone" name="" id="owner-phone">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-lg-4 col-form-label">Fecha:</label>
-                        <div class="col-sm-8 col-lg-8">
-                            <input type="date" id="fecha" name="fecha" class="form-control">
-                        </div>
+                    <div class="field">
+                        <label for="owner-email">Email:</label>
+                        <input type="email" name="" id="owner-email">
                     </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-lg-4 col-form-label">Hora:</label>
-                        <div class="col-sm-8 col-lg-8">
-                            <input type="time" id="hora" name="hora" class="form-control">
-                        </div>
+                    <div class="field">
+                        <label for="current-date">Current Date:</label>
+                        <input type="date" name="" id="current-date">
                     </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-lg-4 col-form-label">Sintomas:</label>
-                        <div class="col-sm-8 col-lg-8">
-                            <textarea id="sintomas" name="sintomas" class="form-control"></textarea>
-                        </div>
+                    <div class="field">
+                        <label for="current-time">Current Hour:</label>
+                        <input type="time" name="" id="current-time">
                     </div>
-                    <div class="form-group">
-                            <button type="submit" class="form-btn">Crear Cita</button>
+                    <div class="field">
+                        <label for="pet-symtom">Symptom:</label>
+                        <textarea type="text" name="" id="pet-symptom">
+                        </textarea>
                     </div>
+                    <input type="submit" id="btn-submit" value="Create">
                 </form>
             </div>
-            <div class="col-md-6">
-                <h2 id="administra" class="mb-4">Administra tus Citas</h2>
-                <ul id="citas" class="list-group lista-citas"></ul>
+            <div id="lista-quotes">
+                <div class="list-void">
+                    <div class="list-void-message">
+                        You don't have any quote, add one.
+                    </div>
+                    <div class="list-void-picture">
+                        <img src="./public/images/_void_picture.svg" alt="svg">
+                    </div>
+                </div>
             </div>
-        </div> <!--.row-->
-    </div><!--.container-->
-
-    <script src="assets/js/app.js" type="module" defer></script>
-    <!-- <script src="js/crud.js"></script> -->
-
+        </div>
+    </div>
 </body>
+<script src='./src/scripts/app.js' type='module'></script>
 </html>
