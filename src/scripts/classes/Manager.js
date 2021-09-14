@@ -1,13 +1,12 @@
-import { quotesList } from '../functions/selectors.js'
 import { UI } from './UI.js'
 
 const INDEXED_NOT_FOUND = 'Indexed Not Found.'
 const MESSAGE_INPUT_VOID = 'All fields are required'
 
-export class Manager{
+export class Manager extends UI{
     constructor() {
-        this.totalQuotes = 0
-        this.UI = new UI()
+        super()
+        this.quotesTotal = 0
         this.initDB()
     }
 
@@ -46,9 +45,9 @@ export class Manager{
             data.onsuccess = (event) => {
                 const data = event.target.result
                 if (!!data.length) {
-                    this.totalQuotes = data.length
-                    this.UI.messageVoidList('none')
-                    this.UI.showQuotes(data)
+                    this.quotesTotal = data.length
+                    this.messageVoidList('none')
+                    this.showQuotes(data)
                 }
             }
         }
@@ -69,10 +68,10 @@ export class Manager{
                     this.loadQuotes()
                 } else {
                     objectStore.add(quote)
-                    this.UI.showQuote(quote)
-                    this.totalQuotes++
+                    this.showQuote(quote)
+                    this.quotesTotal++
                 }
-                this.UI.messageVoidList('none')
+                this.messageVoidList('none')
             }
         }
     }
@@ -86,8 +85,10 @@ export class Manager{
             const objectStore = transaction.objectStore('quote')
             
             objectStore.delete(id)
-            --this.totalQuotes
-            if (!!!this.totalQuotes){ this.UI.messageVoidList('flex') }
+            --this.quotesTotal
+            if (this.quotesTotal == 0) {
+                this.messageVoidList('flex')
+            }
         }
     }
 
@@ -95,7 +96,7 @@ export class Manager{
         for (let feature of quote) {
             const key = feature[0]
             if (!!!quote[key]) {
-                this.UI.showMessage('error', MESSAGE_INPUT_VOID)
+                this.showMessage('error', MESSAGE_INPUT_VOID)
                 return false
             }
         }

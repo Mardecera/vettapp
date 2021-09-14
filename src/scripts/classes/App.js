@@ -15,11 +15,7 @@ export class App{
 
             DOM.form.addEventListener('submit', (event) => {
                 event.preventDefault()
-                this.sendData(event)
-            })
-            DOM.quotesList.addEventListener('click', (event) => {
-                event.preventDefault()
-                this.deleteData(event)
+                this.addQuote(event)
             })
         }
     }
@@ -47,16 +43,11 @@ export class App{
         return data
     }
 
-    sendData(event) {
+    addQuote(event) {
         const editID = +event.target.getAttribute('data-id')
         const quoteData = this.getQuoteForm()
 
         this.MANAGER.addQuote(quoteData, editID)
         event.target.setAttribute('data-id', '')
-    }
-
-    deleteData(event) {
-        const id = +event.target.getAttribute('data-id')
-        if (!!id) { this.MANAGER.deleteQuote(id) }
     }
 }

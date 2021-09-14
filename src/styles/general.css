@@ -16,6 +16,10 @@
     --bg-color-filter-blur-border:#445679a8;
 }
 
+body{
+    height: 100vh;
+}
+
 html{
     background-color: rgb(27, 30, 39);
 }
@@ -24,12 +28,20 @@ html, textarea, input, button, pre{
     font-family: 'Nunito', sans-serif;
 }
 
+textarea{
+    resize: none;
+    /* height: 10em; */
+    /* overflow: clip;
+    height: min-content; */
+}
+
 i{
     pointer-events: none;
 }
 
 .container {
     width: 100%;
+    padding-bottom: 1em;
 }
 
 .contain{
@@ -66,10 +78,13 @@ form .field{
 
 .field input, textarea{
     background-color: rgba(255, 255, 255, 0.938);
+    outline: none;
+    border: 2px solid white;
 }
 
 .field input:focus, textarea:focus{
-    outline: 2px solid rgb(201, 33, 103);
+    /* outline: 2px solid rgb(201, 33, 103); */
+    border: 2px solid rgb(235, 73, 140);
 }
 
 form .field label{
@@ -81,7 +96,7 @@ form .field input, #btn-submit, textarea{
     padding: var(--padding-h);
     border-radius: var(--border-radius);
     outline: none;
-    border: 1px solid rgb(112, 112, 112);
+    /* border: 1px solid rgb(112, 112, 112); */
 }
 
 #btn-submit, .btn-delete{
@@ -126,28 +141,43 @@ form .field input, #btn-submit, textarea{
 }
 
 .quote:hover{
-    border: 2px solid rgb(201, 33, 103);
+    border: 2px solid rgb(235, 73, 140);
 }
 
 .quote .quote-head{
     display: flex;
+    align-items: flex-end;
     gap: 1em;
 }
 
 .quote .info-pet{
     font-size: 1.2em;
+    font-weight: bolder;
 }
 
 .quote .info-owner{
     display: flex;
-    font-size: .8em;
-    opacity: .7;
 }
 
-.quote .info-owner > div:not(:last-child):after{
-    content: '•';
-    margin: 0 .5em;
-    opacity: .7;
+i, .quote .info-owner > div:first-child{
+    pointer-events: none;
+}
+
+.quote .info-owner > div{
+    background-color: rgb(95, 95, 95);
+    margin-right: .7em;
+    color: white;
+    padding: .4em .7em;
+    border-radius: .3em;
+    cursor: pointer;
+    font-size: .7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote .info-owner > div:not(:first-child):hover{
+    background-color: rgb(46, 46, 46);
 }
 
 .quote .head-profile{
@@ -165,6 +195,10 @@ form .field input, #btn-submit, textarea{
     /* overflow: hidden; */
     /* text-overflow: ellipsis; */
 }
+
+/* .quote .quote-body{
+    font-size: .9em;
+} */
 
 .quote-buttons{
     display: flex;
@@ -244,6 +278,63 @@ form .field input, #btn-submit, textarea{
 
 .list-void-picture img{
     width: 100%;
+}
+
+.container{
+    position: relative;
+}
+
+.confirmation-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
+    backdrop-filter: blur(2px);
+}
+
+.confirmation{
+    margin-top: 10%;
+    background-color: rgb(44, 59, 90);
+    padding: calc(var(--padding-h) * 2);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    color: white;
+    /* outline: 2px solid white; */
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+}
+
+.confirmation-btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-accept, .btn-denied{
+    padding: calc(var(--padding-h) / 2) 1em;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.btn-accept{
+    background-color:rgb(17, 141, 83);
+    color: white;
+}
+
+.btn-accept:hover{
+    background-color:rgb(11, 116, 67);
+}
+
+.btn-denied:hover{
+    background-color:rgb(216, 216, 216);
 }
 
 @media (min-width: 700px){

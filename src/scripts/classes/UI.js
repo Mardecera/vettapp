@@ -1,6 +1,8 @@
 import * as FUNC from '../functions/functions.js'
 import * as DOM from '../functions/selectors.js'
 
+const CONFIRMATION_MESSAGE = 'Do you want to delete this quote?'
+
 export class UI{
     showQuotes(quotes = []) {
         this.cleanListQuotes()
@@ -13,28 +15,32 @@ export class UI{
         DOM.quotesList.appendChild(quoteHTML)
     }
 
-    getQuote({ petName, petOwner, ownerPhone, ownerEmail, currentDate, currentTime, petSymptom, id }) {
-        const quote = FUNC.createElementHTML({clases: ['quote']})
-        const quoteHead = this.getQuoteHead(petName, petOwner, ownerPhone, ownerEmail, currentDate)
-        const quoteBody = this.getQuoteBody(petSymptom)
-        const quoteButtons = this.getButtons(id, {
-            petName,
-            petOwner,
-            ownerPhone,
-            ownerEmail,
-            currentDate,
-            currentTime,
-            petSymptom, id
-        }, quote)
+    confirmation(id, quoteHTML) {
+        const confirmationBG = FUNC.createElementHTML({ clases: ['confirmation-bg'] })
+        const confirmation = FUNC.createElementHTML({ clases: ['confirmation'] })
+        const confirmationBody = this.getConfirmationBody(CONFIRMATION_MESSAGE)
+        const confirmationButtons = this.getConfirmationButttons(confirmationBG, id, quoteHTML)
 
-        quote.appendChild(quoteHead)
-        quote.appendChild(quoteBody)
-        quote.appendChild(quoteButtons)
-
-        return quote
+        confirmation.appendChild(confirmationBody)
+        confirmation.appendChild(confirmationButtons)
+        confirmationBG.appendChild(confirmation)
+        DOM.container.appendChild(confirmationBG)
     }
 
-    getQuoteHead(petName, petOwner, ownerPhone, ownerEmail, currentDate) {
+    getQuote(quoteData) {
+        const quoteHTML = FUNC.createElementHTML({clases: ['quote']})
+        const quoteHead = this.getQuoteHead(quoteData)
+        const quoteBody = this.getQuoteBody(quoteData.petSymptom)
+        const quoteButtons = this.getQuoteButtons(quoteData, quoteHTML)
+
+        quoteHTML.appendChild(quoteHead)
+        quoteHTML.appendChild(quoteBody)
+        quoteHTML.appendChild(quoteButtons)
+
+        return quoteHTML
+    }
+
+    getQuoteHead({ petName, petOwner, ownerPhone, ownerEmail, currentDate }) {
         const head = FUNC.createElementHTML({ clases: ['quote-head'] })
         const divPicture = FUNC.createElementHTML({ clases: ['head-profile'] })
         const picture = FUNC.createElementHTML({
@@ -46,8 +52,19 @@ export class UI{
         const divPet = FUNC.createElementHTML({ clases: ['info-pet'], textContent: petName })
         const divOwner = FUNC.createElementHTML({ clases: ['info-owner'] })
         const divOwnerName = FUNC.createElementHTML({ clases: ['owner-name'], textContent: petOwner })
-        const divOwnerPhone = FUNC.createElementHTML({ clases: ['owner-phone'], textContent: ownerPhone })
-        const divOwnerEmail = FUNC.createElementHTML({ clases: ['owner-email'], textContent: ownerEmail })
+        const divOwnerPhone = FUNC.createElementHTML({ clases: ['owner-phone'] })
+        const divOwnerPhoneIcon = FUNC.createElementHTML({
+            type: 'i',
+            clases: ['fal', 'fa-phone']
+        })
+        const divOwnerEmail = FUNC.createElementHTML({ clases: ['owner-email'] })
+        const divOwnerEmailIcon = FUNC.createElementHTML({
+            type: 'i',
+            clases: ['fal', 'fa-envelope']
+        })
+
+        divOwnerEmail.appendChild(divOwnerEmailIcon)
+        divOwnerPhone.appendChild(divOwnerPhoneIcon)
 
         divOwner.appendChild(divOwnerName)
         divOwner.appendChild(divOwnerPhone)
@@ -66,18 +83,31 @@ export class UI{
         return body
     }
 
-    getQuoteButtonDelete(id, quote) {
+    getQuoteButtons(quoteData, quoteHTML) {
+        const quoteButtons = FUNC.createElementHTML({
+            clases: ['quote-buttons']
+        })
+        const quoteButtonDelete = this.getQuoteButtonDelete(quoteData.id, quoteHTML)
+        const quoteButtonEdit = this.getQuoteButtonEdit(quoteData)
+
+        quoteButtons.appendChild(quoteButtonEdit)
+        quoteButtons.appendChild(quoteButtonDelete)
+
+        return quoteButtons
+    }
+
+    getQuoteButtonDelete(id, quoteHTML) {
         const button = FUNC.createElementHTML({
             type: 'button',
             textContent: 'x',
             attribs: [['data-id', id]],
             clases: ['btn-delete']
         })
-        button.onclick = () => quote.remove()
+        button.onclick = () => this.confirmation(id, quoteHTML)
         return button
     }
 
-    getQuoteButtonEdit(id, quote) {
+    getQuoteButtonEdit(quoteData) {
         const icon = FUNC.createElementHTML({
             type: 'i',
             clases: ['fal', 'fa-edit']
@@ -88,27 +118,55 @@ export class UI{
         })
         button.appendChild(icon)
         button.onclick = () => {
-            DOM.form.setAttribute('data-id', id)
-            FUNC.fillInFieldsTest(quote)
+            DOM.form.setAttribute('data-id', quoteData.id)
+            FUNC.fillInFieldsTest(quoteData)
         }
         return button
     }
 
-    getButtons(id, quoteData, quoteHtml) {
-        const quoteButtons = FUNC.createElementHTML({
-            clases: ['quote-buttons']
+    getConfirmationBody(message) {
+        const container = FUNC.createElementHTML({
+            clases: ['confirmation-body']
         })
-        const quoteButtonDelete = this.getQuoteButtonDelete(id, quoteHtml)
-        const quoteButtonEdit = this.getQuoteButtonEdit(id, quoteData)
+        container.textContent = message
 
-        quoteButtons.appendChild(quoteButtonEdit)
-        quoteButtons.appendChild(quoteButtonDelete)
+        return container
+    }
 
-        return quoteButtons
+    getConfirmationButttons(content, quoteId, quoteHTML) {
+        const container = FUNC.createElementHTML({ clases: ['confirmation-btns'] })
+        const buttonAccept = FUNC.createElementHTML({
+            type: 'button',
+            clases: ['btn-accept'],
+            textContent: 'Accept'
+        })
+        const buttonDenied = FUNC.createElementHTML({
+            type: 'button',
+            clases: ['btn-denied'],
+            textContent: 'Denied'
+        })
+
+        buttonAccept.onclick = () => {
+            content.remove()
+            quoteHTML.remove()
+            this.deleteQuote(quoteId)
+        }
+        buttonDenied.onclick = () => {
+            content.remove()
+        }
+
+        container.appendChild(buttonAccept)
+        container.appendChild(buttonDenied)
+
+        return container
     }
 
     messageVoidList(displayMode) {
         DOM.voidList.style.display = displayMode
+    }
+
+    showMessage(message) {
+        console.log(message)
     }
 
     cleanListQuotes() {

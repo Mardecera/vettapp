@@ -8,7 +8,8 @@ const inputCurrentTime  = document.querySelector('#current-time')
 const inputPetSymptom   = document.querySelector('#pet-symptom')
 const butttonSubmit     = document.querySelector('#btn-submit')
 const quotesList        = document.querySelector('#lista-quotes')
-const voidList          = document.querySelector('.list-void')
+const voidList = document.querySelector('.list-void')
+const container = document.querySelector('.container')
 
 export {
     form,
@@ -21,5 +22,6 @@ export {
     inputPetSymptom,
     butttonSubmit,
     quotesList,
-    voidList
+    voidList,
+    container
 }
