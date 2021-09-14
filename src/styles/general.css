@@ -137,7 +137,7 @@ form .field input, #btn-submit, textarea{
     background-color: white;
     border: 2px solid rgba(192, 192, 192, 0.493);
     border-radius: var(--border-radius);
-    padding: 1em;
+    padding: .5em;
 }
 
 .quote:hover{
