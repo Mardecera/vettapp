@@ -17,6 +17,11 @@ export class App{
                 event.preventDefault()
                 this.addQuote()
             })
+            DOM.mode.addEventListener('click', (event) => {
+                event.preventDefault()
+                DOM.mode.classList.toggle('active')
+                DOM.body.classList.toggle('light')
+            })
         }
     }
 

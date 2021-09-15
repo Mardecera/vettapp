@@ -1,0 +1,21 @@
+body{
+    height: 100vh;
+}
+
+html{
+    background-color: rgb(27, 30, 39);
+}
+
+html, textarea, input, button, pre{
+    font-family: 'Nunito', sans-serif;
+}
+
+i{
+    pointer-events: none;
+}
+
+pre{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,433 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap");
+body {
+  height: 100vh;
+}
+
+html {
+  background-color: #1b1e27;
+}
+
+html, textarea, input, button, pre {
+  font-family: 'Nunito', sans-serif;
+}
+
+i {
+  pointer-events: none;
+}
+
+pre {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+*, :after, :before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --border-radius: .3em;
+  --padding-h: 1em;
+  --bg-color-filter-blur: rgba(68, 86, 121, 0.659);
+  --bg-color-filter-blur-border: rgba(68, 86, 121, 0.659);
+}
+
+.container {
+  width: 100%;
+  padding-bottom: var(--padding-h);
+  position: relative;
+}
+
+.container .contain {
+  max-width: min(1200px, 80%);
+  margin: 1.5em auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2em;
+}
+
+.container .contain .title {
+  text-align: center;
+  width: 100%;
+  flex-grow: 1;
+  color: white;
+}
+
+.container .contain .title h1 {
+  color: #ee3b86;
+  font-size: 4em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
+form .field {
+  width: 100%;
+}
+
+form .field input {
+  background-color: rgba(255, 255, 255, 0.938);
+  border: 2px solid white;
+  border-radius: .5em;
+  outline: none;
+  padding: var(--padding-h);
+  resize: none;
+  width: 100%;
+}
+
+form .field textarea {
+  background-color: rgba(255, 255, 255, 0.938);
+  border: 2px solid white;
+  border-radius: .5em;
+  outline: none;
+  padding: var(--padding-h);
+  resize: none;
+  width: 100%;
+}
+
+form .field label {
+  color: white;
+}
+
+form #btn-submit {
+  border: none;
+  border-radius: .5em;
+  background-color: #c92167;
+  color: white;
+  cursor: pointer;
+  padding: var(--padding-h);
+  outline: none;
+  width: 100%;
+}
+
+form #btn-submit:hover {
+  background-color: #b11355;
+}
+
+#lista-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: 100%;
+}
+
+#lista-quotes .quote {
+  display: flex;
+  background-color: white;
+  border: 2px solid rgba(192, 192, 192, 0.493);
+  border-radius: var(--border-radius);
+  flex-direction: column;
+  gap: 1em;
+  padding: var(--padding-h);
+  position: relative;
+}
+
+#lista-quotes .quote:hover {
+  border: 2px solid #eb498c;
+}
+
+#lista-quotes .quote .quote-head {
+  align-items: flex-end;
+  display: flex;
+  gap: 1em;
+}
+
+#lista-quotes .quote .quote-head .head-profile {
+  border-radius: .5em;
+  height: 3em;
+  width: 3em;
+  overflow: hidden;
+}
+
+#lista-quotes .quote .quote-head .head-info .info-pet {
+  font-size: 1.2em;
+  font-weight: bolder;
+}
+
+#lista-quotes .quote .quote-head .head-info .info-owner {
+  display: flex;
+}
+
+#lista-quotes .quote .quote-head .head-info .info-owner > div:first-child {
+  pointer-events: none;
+}
+
+#lista-quotes .quote .quote-head .head-info .info-owner > div:not(:first-child):hover {
+  background-color: #2e2e2e;
+}
+
+#lista-quotes .quote .quote-head .head-info .info-owner > div {
+  align-items: center;
+  background-color: #5f5f5f;
+  border-radius: .3em;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: .7em;
+  justify-content: center;
+  margin-right: .7em;
+  padding: .4em .7em;
+}
+
+#lista-quotes .quote .quote-head .head-info .info-owner .owner-name {
+  display: flex;
+  justify-content: flex-start !important;
+  max-width: 80px;
+}
+
+#lista-quotes .quote .quote-buttons {
+  display: flex;
+  gap: .5em;
+  position: absolute;
+  right: .5em;
+  top: .5em;
+}
+
+#lista-quotes .quote .quote-buttons .btn-edit {
+  align-items: center;
+  background-color: #1aa866;
+  border: none;
+  border-radius: .5em;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  height: 2em;
+  justify-content: center;
+  outline: none;
+  width: 2em;
+}
+
+#lista-quotes .quote .quote-buttons .btn-edit:hover {
+  background-color: #118d53;
+}
+
+#lista-quotes .quote .quote-buttons .btn-delete {
+  align-items: center;
+  background-color: #c92167;
+  border: none;
+  border-radius: .5em;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  height: 2em;
+  justify-content: center;
+  outline: none;
+  width: 2em;
+}
+
+#lista-quotes .quote .quote-buttons .btn-delete:hover {
+  background-color: #b11355;
+}
+
+#lista-quotes .list-void {
+  color: white;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  position: relative;
+  text-align: center;
+}
+
+#lista-quotes .list-void .list-void-message {
+  color: #151c2b;
+  background-color: white;
+  border-radius: .5em;
+  padding: var(--padding-h);
+  position: absolute;
+  top: 10%;
+  width: 80%;
+}
+
+#lista-quotes .list-void .list-void-picture {
+  width: 100%;
+}
+
+#lista-quotes .list-void .list-void-picture img {
+  width: 100%;
+}
+
+.confirmation-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.confirmation-bg .confirmation {
+  background-color: #2c3b5a;
+  border-radius: .5em;
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 10%;
+  padding: var(--padding-h);
+}
+
+.confirmation-bg .confirmation .confirmation-btns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirmation-bg .confirmation .confirmation-btns .btn-accept {
+  padding: .5em 1em;
+  border-radius: .5em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: #118d53;
+  color: white;
+}
+
+.confirmation-bg .confirmation .confirmation-btns .btn-accept:hover {
+  background-color: #0b7443;
+}
+
+.confirmation-bg .confirmation .confirmation-btns .btn-denied {
+  padding: .5em 1em;
+  border-radius: .5em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.confirmation-bg .confirmation .confirmation-btns .btn-denied:hover {
+  background-color: #d8d8d8;
+}
+
+@media (min-width: 700px) {
+  .contain {
+    justify-content: center;
+    align-items: center;
+  }
+  .contain .form {
+    width: 70%;
+  }
+  .contain .form form {
+    border: 1px solid rgba(68, 86, 121, 0.659);
+    border-radius: .5em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    padding: calc(0.5em + 5%);
+  }
+  .contain .form form::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    border-radius: 100%;
+    background: rgba(68, 86, 121, 0.659);
+    box-shadow: 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659);
+    filter: blur(20px);
+    z-index: -1;
+    top: 0;
+    right: 0;
+  }
+  .contain .form form::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    border-radius: 100%;
+    background: rgba(68, 86, 121, 0.659);
+    box-shadow: 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659);
+    filter: blur(20px);
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+  }
+  .contain #lista-quotes {
+    border: 1px solid rgba(68, 86, 121, 0.659);
+    border-radius: .5em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    width: 70%;
+  }
+  .contain #lista-quotes:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    border-radius: 100%;
+    background: rgba(68, 86, 121, 0.659);
+    box-shadow: 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659);
+    filter: blur(20px);
+    z-index: -1;
+    top: 0;
+    right: 0;
+  }
+  .contain #lista-quotes::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    border-radius: 100%;
+    background: rgba(68, 86, 121, 0.659);
+    box-shadow: 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659), 0 0 100px rgba(68, 86, 121, 0.659);
+    filter: blur(20px);
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .contain {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .contain .form {
+    width: 40%;
+  }
+  .contain .form form {
+    padding: calc(0.5em + 5%);
+  }
+  .contain .form form #btn-submit {
+    font-size: 1em;
+  }
+  .contain .form form #btn-submit:hover {
+    color: white;
+  }
+  .contain #lista-quotes {
+    padding: .5em;
+    width: 40%;
+  }
+}
+
+@media (max-width: 400px) {
+  #lista-quotes {
+    gap: 1.5em;
+  }
+  #lista-quotes .quote-buttons {
+    top: -1em;
+  }
+  #lista-quotes .quote-buttons .btn-edit {
+    width: 2.5em;
+    height: 2.5em;
+  }
+  #lista-quotes .quote-buttons .btn-delete {
+    width: 2.5em;
+    height: 2.5em;
+  }
+  :focus {
+    border: 2px solid #eb498c;
+  }
+}

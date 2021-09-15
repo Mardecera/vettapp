@@ -1,0 +1,84 @@
+:root{
+    --light-color: rgb(19, 24, 43);
+    --light-primary-color: rgb(226, 226, 226);
+}
+
+.mode{
+    position: relative;
+    background-color: orange;
+    display: flex;
+    width: max-content;
+    border-radius: 100px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.mode::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: unset;
+    width: 2em;
+    height: 2em;
+    background-color: white;
+    border-radius: 100%;
+    transition: left 1s ease-out;
+}
+
+.mode.active::after{
+    left: unset;
+    right: 0;
+    transition: right 1s ease-out;
+}
+
+.mode span{
+    display: block;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+html.light{
+    background-color: var(--light-primary-color)
+}
+
+.light{
+    /* background-color: var(--light-primary-color); */
+    color: rgb(19, 24, 43);
+}
+
+html.light .mode{
+    background-color: rgb(19, 24, 43);
+    color: white;
+}
+
+html.light .title h4{
+    color: var(--light-color);
+}
+
+html.light .confirmation{
+    background-color: var(--light-primary-color);
+    color: var(--light-color);
+}
+
+html.light .btn-denied{
+    background-color:rgb(185, 185, 185);
+    color: white;
+}
+
+html.light .btn-denied:hover{
+    background-color:rgb(155, 155, 155);
+}
+
+@media (min-width: 700px){
+    html.light form::after,
+    html.light form::before,
+    #lista-quotes::after,
+    #lista-quotes::before{
+        box-shadow: none;
+        background: none;
+    }
+}

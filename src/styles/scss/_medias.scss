@@ -1,0 +1,72 @@
+@media (min-width: 700px){
+    .contain{
+        justify-content: center;
+        align-items: center;
+        .form{
+            width: 70%;
+            form{
+                @include border-pos-over-pad();
+                padding: calc(0.5em + 5%);
+                &::before{
+                    @include bg-lights(rgba(68, 86, 121, 0.659));
+                    @include top-right();
+                }
+                &::after{
+                    @include bg-lights(rgba(68, 86, 121, 0.659));
+                    @include bottom-left();
+                }
+            }
+        }
+    
+        #lista-quotes{
+            @include border-pos-over-pad();
+            width: 70%;
+            &:before{
+                @include bg-lights(rgba(68, 86, 121, 0.659));
+                @include top-right();
+            }
+            &::after{
+                @include bg-lights(rgba(68, 86, 121, 0.659));
+                @include bottom-left();
+            }
+        }
+    }
+}
+
+@media (min-width: 1000px){
+    .contain{
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        .form{
+            width: 40%;
+            form{
+                padding: calc(0.5em + 5%);
+                #btn-submit{
+                    font-size: 1em;
+                    &:hover{
+                        color: white;
+                    }
+                }
+            }
+        }
+        #lista-quotes{
+            padding: .5em;
+            width: 40%;
+        }
+    }
+}
+
+@media (max-width: 400px){
+    #lista-quotes{
+        gap: 1.5em;
+        .quote-buttons{
+            top: -1em;
+            .btn-edit{ @include size() }
+            .btn-delete{ @include size() }
+        }
+    }
+    &:focus{
+        @include border-focus(2px, rgb(235, 73, 140))
+    }
+}

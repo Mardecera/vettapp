@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+
+@import '_tags.scss';
+@import '_mixin.scss';
+
+*, :after, :before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@mixin border-focus($border, $color) {
+    border: $border solid $color
+}
+
+:root{
+    --border-radius: .3em;
+    --padding-h: 1em;
+    --bg-color-filter-blur:rgba(68, 86, 121, 0.659);
+    --bg-color-filter-blur-border:rgba(68, 86, 121, 0.659);
+}
+
+.container {
+    width: 100%;
+    padding-bottom: var(--padding-h);
+    position: relative;
+    .contain{
+        max-width: m#{i}n(1200px, 80%);
+        margin: 1.5em auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+        .title{
+            text-align: center;
+            width: 100%;
+            flex-grow: 1;
+            color: white;
+            h1{
+                color: rgb(238, 59, 134);
+                font-size: 4em;
+            }
+        }
+    }
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    .field{
+        width: 100%;
+        input{ @include input-textarea(); }
+        textarea{ @include input-textarea(); }
+        label{ color: white; }
+    }
+    #btn-submit{
+        border: none;
+        border-radius: .5em;
+        background-color: rgb(201, 33, 103);
+        color: white;
+        cursor: pointer;
+        padding: var(--padding-h);
+        outline: none;
+        width: 100%;
+        &:hover{
+            background-color: rgb(177, 19, 85);
+        }
+    }
+}
+
+#lista-quotes{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 100%;
+    .quote{
+        display: flex;
+        background-color: white;
+        border: 2px solid rgba(192, 192, 192, 0.493);
+        border-radius: var(--border-radius);
+        flex-direction: column;
+        gap: 1em;
+        padding: var(--padding-h);
+        position: relative;
+        &:hover{
+            border: 2px solid rgb(235, 73, 140);
+        }
+        .quote-head{
+            align-items: flex-end;
+            display: flex;
+            gap: 1em;
+            .head-profile{
+                border-radius: .5em;
+                height: 3em;
+                width: 3em;
+                overflow: hidden;
+            }
+            .head-info{
+                .info-pet{
+                    font-size: 1.2em;
+                    font-weight: bolder;
+                }
+                .info-owner{
+                    display: flex;
+                    & > div:first-child{
+                        pointer-events: none;
+                    }
+                    & > div:not(:first-child):hover {
+                        background-color: rgb(46, 46, 46);
+                    }
+                    & > div{
+                        align-items: center;
+                        background-color: rgb(95, 95, 95);
+                        border-radius: .3em;
+                        color: white;
+                        cursor: pointer;
+                        display: flex;
+                        font-size: .7em;
+                        justify-content: center;
+                        margin-right: .7em;
+                        padding: .4em .7em;
+                    }
+                    .owner-name{
+                        display: flex;
+                        justify-content: flex-start !important;
+                        max-width: 80px;
+                    }
+                }
+            }
+        }
+        .quote-buttons{
+            display: flex;
+            gap: .5em;
+            position: absolute;
+            right: .5em;
+            top: .5em;
+            .btn-edit{
+                @include button(rgb(26, 168, 102));
+                &:hover{
+                    background-color: rgb(17, 141, 83);
+                }
+            }
+            .btn-delete{
+                @include button(rgb(201, 33, 103));
+                &:hover{
+                    background-color: rgb(177, 19, 85);
+                }
+            }
+        }
+    }
+    .list-void{
+        color: white;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+        position: relative;
+        text-align: center;
+        .list-void-message{
+            color: rgb(21, 28, 43);
+            background-color: rgb(255, 255, 255);
+            border-radius: .5em;
+            padding: var(--padding-h);
+            position: absolute;
+            top: 10%;
+            width: 80%;
+        }
+        .list-void-picture{
+            width: 100%;
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.confirmation-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    .confirmation{
+        background-color: rgb(44, 59, 90);
+        border-radius: .5em;
+        box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        margin-top: 10%;
+        padding: var(--padding-h);
+        .confirmation-btns{
+            display: flex;
+            justify-content: space-around;
+            .btn-accept{
+                padding: .5em 1em;
+                border-radius: .5em;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                background-color:rgb(17, 141, 83);
+                color: white;
+                &:hover{
+                    background-color:rgb(11, 116, 67);
+                }
+            }
+            .btn-denied{
+                padding: .5em 1em;
+                border-radius: .5em;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                &:hover{
+                    background-color:rgb(216, 216, 216);
+                }
+            }
+        }
+    }
+}
+
+@import '_medias.scss';
