@@ -15,7 +15,7 @@ export class App{
 
             DOM.form.addEventListener('submit', (event) => {
                 event.preventDefault()
-                this.addQuote(event)
+                this.addQuote()
             })
         }
     }
@@ -43,11 +43,11 @@ export class App{
         return data
     }
 
-    addQuote(event) {
-        const editID = +event.target.getAttribute('data-id')
+    addQuote() {
+        const editID = +DOM.form.getAttribute('data-id')
         const quoteData = this.getQuoteForm()
 
         this.MANAGER.addQuote(quoteData, editID)
-        event.target.setAttribute('data-id', '')
+        DOM.form.setAttribute('data-id', '')
     }
 }

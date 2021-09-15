@@ -10,6 +10,7 @@ const butttonSubmit     = document.querySelector('#btn-submit')
 const quotesList        = document.querySelector('#lista-quotes')
 const voidList = document.querySelector('.list-void')
 const container = document.querySelector('.container')
+const html = document.querySelector('body')
 
 export {
     form,
@@ -23,5 +24,6 @@ export {
     butttonSubmit,
     quotesList,
     voidList,
-    container
+    container,
+    html
 }

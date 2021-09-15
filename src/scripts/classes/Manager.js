@@ -46,7 +46,7 @@ export class Manager extends UI{
                 const data = event.target.result
                 if (!!data.length) {
                     this.quotesTotal = data.length
-                    this.messageVoidList('none')
+                    this.showEmptyList('none')
                     this.showQuotes(data)
                 }
             }
@@ -71,7 +71,7 @@ export class Manager extends UI{
                     this.showQuote(quote)
                     this.quotesTotal++
                 }
-                this.messageVoidList('none')
+                this.showEmptyList('none')
             }
         }
     }
@@ -87,7 +87,7 @@ export class Manager extends UI{
             objectStore.delete(id)
             --this.quotesTotal
             if (this.quotesTotal == 0) {
-                this.messageVoidList('flex')
+                this.showEmptyList('flex')
             }
         }
     }

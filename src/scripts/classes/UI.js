@@ -51,7 +51,11 @@ export class UI{
         const divInfo = FUNC.createElementHTML({ clases: ['head-info'] })
         const divPet = FUNC.createElementHTML({ clases: ['info-pet'], textContent: petName })
         const divOwner = FUNC.createElementHTML({ clases: ['info-owner'] })
-        const divOwnerName = FUNC.createElementHTML({ clases: ['owner-name'], textContent: petOwner })
+        const preOwnerName = FUNC.createElementHTML({
+            type: 'pre',
+            textContent: petOwner
+        })
+        const divOwnerName = FUNC.createElementHTML({ clases: ['owner-name']})
         const divOwnerPhone = FUNC.createElementHTML({ clases: ['owner-phone'] })
         const divOwnerPhoneIcon = FUNC.createElementHTML({
             type: 'i',
@@ -65,7 +69,7 @@ export class UI{
 
         divOwnerEmail.appendChild(divOwnerEmailIcon)
         divOwnerPhone.appendChild(divOwnerPhoneIcon)
-
+        divOwnerName.appendChild(preOwnerName)
         divOwner.appendChild(divOwnerName)
         divOwner.appendChild(divOwnerPhone)
         divOwner.appendChild(divOwnerEmail)
@@ -103,7 +107,11 @@ export class UI{
             attribs: [['data-id', id]],
             clases: ['btn-delete']
         })
-        button.onclick = () => this.confirmation(id, quoteHTML)
+        button.onclick = (event) => {
+            this.confirmation(id, quoteHTML)
+            button.disabled = true
+            button.disabled = false
+        }
         return button
     }
 
@@ -151,6 +159,7 @@ export class UI{
             quoteHTML.remove()
             this.deleteQuote(quoteId)
         }
+        
         buttonDenied.onclick = () => {
             content.remove()
         }
@@ -161,7 +170,7 @@ export class UI{
         return container
     }
 
-    messageVoidList(displayMode) {
+    showEmptyList(displayMode) {
         DOM.voidList.style.display = displayMode
     }
 
@@ -170,7 +179,7 @@ export class UI{
     }
 
     cleanListQuotes() {
-        while (DOM.quotesList.firstChild) {
+        while (DOM.quotesList.childElementCount !== 1) {
             DOM.quotesList.lastChild.remove()
         }
     }
